@@ -1,3 +1,11 @@
-## Game-Explode-Ballons
+## Jogo de Explodir Balões
 
-[403d6230-9d1f-4aec-be14-f3f96141e535.webm](https://user-images.githubusercontent.com/85769101/212357166-2807df88-5ffd-4d04-81a6-3f2dc7d14542.webm)
+### Desenvolvido em JavaScript e utilizando o Jquery, onde estão distribuídos 80 balões alinhados em um determinado espaço, na qual o objetivo é estourar todos antes do tempo acabar.
+
+### Há 3 Modos de Dificuldade, ambos com 80 balões. Entretanto, quanto maior a dificuldade menor é seu tempo! Você consegue estourar todos no modo difícil?
+
+[Fácil:  120 segundos]
+[Médio:   60 segundos]
+[Difícil: 30 segundos]
+
+[hash_game.webm](https://user-images.githubusercontent.com/85769101/212357442-9f4ee568-6b9f-4172-8090-3b87240c9baf.webm)
