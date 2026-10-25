@@ -2,50 +2,40 @@
 <html lang="pt-br">
 	<head>
 		<meta charset="UTF-8">
-
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Estourando balões</title>
-
+		<link rel="stylesheet" href="estilo.css">
 		<script src="jogo.js"></script>
-
 	</head>
 
-	<body onload="iniciaJogo()">
-		<div style="float:left; width:auto; height:500px; background: #FFF; border: solid 1px #A2A2A2; margin-right: 5px;">
-			<table border="0">
-				<tr>
-					<td>
-						<img src="imagens/balao_azul_grande.png" />
-					</td>
-					<td>
-						<span id="baloes_inteiros" style="font-size: 40px;"></span>
-					</td>
-				</tr>
-			</table>
+	<body class="pagina-jogo" onload="iniciaJogo()">
+		<main class="jogo">
+			<div class="painel">
+				<div class="placar" title="Balões inteiros">
+					<img src="imagens/balao_azul_grande.png" alt="Balões inteiros" />
+					<span id="baloes_inteiros"></span>
+				</div>
 
-			<br />
-			<table border="0">
-				<tr>
-					<td>
-						<img src="imagens/balao_azul_grande_estourado.png" />
-					</td>
-					<td>
-						<span id="baloes_estourados" style="font-size: 40px;"></span>
-					</td>
-				</tr>
-			</table>
+				<div class="placar" title="Balões estourados">
+					<img src="imagens/balao_azul_grande_estourado.png" alt="Balões estourados" />
+					<span id="baloes_estourados"></span>
+				</div>
 
-			<br/>
-			<table border="0" style="width: 140px; height: 132px;">
-				<tr>
-					<td style="background: url('imagens/cronometro.png'); text-align:center">
-						<span id="cronometro" style="color: red; font-size: 30px;"></span>
-					</td>
-				</tr>
-			</table>
+				<div class="cronometro" title="Tempo restante">
+					<span id="cronometro"></span>
+				</div>
+			</div>
 
-		</div>
-
-		<div id="cenario" style="float: left; width: 600px; height: 500px; background: url('imagens/cenario.png'); background-position: bottom;"></div>
+			<div id="cenario">
+				<div class="resultado" id="resultado">
+					<div class="resultado-cartao">
+						<h2 id="resultado_titulo"></h2>
+						<p id="resultado_texto"></p>
+						<a href="" id="jogar_de_novo">Jogar de novo</a>
+						<a href="index.html" class="secundario">Mudar nível</a>
+					</div>
+				</div>
+			</div>
+		</main>
 	</body>
-	
 </html>

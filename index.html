@@ -2,33 +2,39 @@
 <html lang="pt-br">
 	<head>
 		<meta charset="UTF-8">
-
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Estourando balões</title>
-
-		<script language='Javascript'>
-			
-			function iniciaJogo(){
-				var nivel_jogo = document.getElementById('nivel_jogo').value;
-
-				window.location.href = 'jogo.html?'+nivel_jogo;
-				
-			}
-		</script>
+		<link rel="stylesheet" href="estilo.css">
 	</head>
 
 	<body>
-		<div>
-			<p>
-				<b>Nível: </b>
-				<select id="nivel_jogo">
-					<option value="1">Fácil</option>
-					<option value="2">Normal</option>
-					<option value="3">Difícil</option>
-				</select>
-			</p>
-			<br />
-			<img src="imagens/iniciar.png" onclick="iniciaJogo()" />
+		<main class="menu">
+			<div class="menu-cartao">
+				<img src="imagens/balao_azul_grande.png" alt="" width="58" height="75" style="margin: 0 auto; display: block;" />
+				<h1>Explode Balões</h1>
+				<p>Estoure os 80 balões antes do tempo acabar!<br>Fácil: 120 s · Normal: 60 s · Difícil: 30 s</p>
 
+				<form action="jogo.html" method="get" id="formNivel">
+					<label for="nivel_jogo">Nível:</label>
+					<select id="nivel_jogo">
+						<option value="1">Fácil</option>
+						<option value="2">Normal</option>
+						<option value="3">Difícil</option>
+					</select>
+
+					<button type="submit" class="botao-iniciar" aria-label="Iniciar jogo">
+						<img src="imagens/iniciar.png" alt="" width="90" height="89" />
+					</button>
+				</form>
+			</div>
+		</main>
+
+		<script>
+			// Mantém o formato de URL original: jogo.html?1, ?2 ou ?3
+			document.getElementById('formNivel').addEventListener('submit', function (e) {
+				e.preventDefault();
+				window.location.href = 'jogo.html?' + document.getElementById('nivel_jogo').value;
+			});
+		</script>
 	</body>
-	
 </html>

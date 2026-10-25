@@ -1,0 +1,229 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #bfe3f5 url('imagens/cenario.png') center bottom / cover no-repeat fixed;
+    color: #1f2d3d;
+}
+
+/* ---------- Menu (index.html) ---------- */
+
+.menu {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.menu-cartao {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 16px;
+    padding: 28px 32px;
+    max-width: 380px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+}
+
+.menu-cartao h1 {
+    margin: 8px 0 4px;
+    font-size: 28px;
+}
+
+.menu-cartao p {
+    margin: 8px 0 18px;
+    line-height: 1.4;
+}
+
+.menu-cartao label {
+    font-weight: bold;
+    margin-right: 6px;
+}
+
+.menu-cartao select {
+    font-size: 16px;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+.botao-iniciar {
+    display: block;
+    margin: 20px auto 6px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+
+.botao-iniciar:hover {
+    transform: scale(1.08);
+}
+
+/* ---------- Jogo (jogo.html) ---------- */
+
+body.pagina-jogo {
+    background: #fff;
+}
+
+.jogo {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 16px;
+}
+
+.painel {
+    background: #fff;
+    border: solid 1px #a2a2a2;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    min-height: 500px;
+}
+
+.placar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 40px;
+    min-width: 120px;
+}
+
+.cronometro {
+    width: 140px;
+    height: 132px;
+    background: url('imagens/cronometro.png') no-repeat center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 0 0 22px;
+}
+
+.cronometro span {
+    color: red;
+    font-size: 30px;
+}
+
+#cenario {
+    position: relative;
+    width: 600px;
+    max-width: 100%;
+    min-height: 500px;
+    background: url('imagens/cenario.png') center bottom / cover;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    padding: 4px;
+}
+
+#cenario img {
+    margin: 10px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+#cenario img.estourado {
+    cursor: default;
+}
+
+/* Mensagem de fim de jogo (no lugar dos alert()) */
+.resultado {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.45);
+    padding: 16px;
+}
+
+.resultado.visivel {
+    display: flex;
+}
+
+.resultado-cartao {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 26px;
+    text-align: center;
+    max-width: 340px;
+}
+
+.resultado-cartao h2 {
+    margin-top: 0;
+}
+
+.resultado-cartao a {
+    display: inline-block;
+    margin: 6px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: #1f6fb2;
+    color: #fff;
+    text-decoration: none;
+}
+
+.resultado-cartao a.secundario {
+    background: #e9eef3;
+    color: #1f2d3d;
+}
+
+/* Celular: o painel vira uma barra acima do cenário */
+@media (max-width: 800px) {
+    .jogo {
+        flex-direction: column;
+        align-items: center;
+        padding: 8px;
+    }
+
+    .painel {
+        flex-direction: row;
+        justify-content: space-around;
+        min-height: 0;
+        width: 100%;
+        max-width: 600px;
+        gap: 4px;
+        padding: 6px;
+    }
+
+    .placar {
+        font-size: 26px;
+        min-width: 0;
+    }
+
+    .placar img {
+        height: 44px;
+        width: auto;
+    }
+
+    .cronometro {
+        width: 76px;
+        height: 72px;
+        background-size: contain;
+        padding: 10px 0 0 12px;
+    }
+
+    .cronometro span {
+        font-size: 20px;
+    }
+
+    #cenario {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    #cenario img {
+        margin: 6px;
+    }
+}

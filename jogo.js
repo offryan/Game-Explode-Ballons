@@ -1,9 +1,10 @@
 var timerId = null; //variável que armazena a chamada da função timeout
+var jogoAtivo = false; //impede cliques depois do fim do jogo
 
 function iniciaJogo(){
 
 	var url = window.location.search;
-	
+
 	var nivel_jogo = url.replace("?", "");
 
 	var tempo_segundos = 0;
@@ -15,9 +16,15 @@ function iniciaJogo(){
 	if(nivel_jogo == 2) { //2 normal -> 60segundos
 		tempo_segundos = 60;
 	}
-	
+
 	if(nivel_jogo == 3) { //3 difícil -> 30segundos
 		tempo_segundos = 30;
+	}
+
+	// sem nível na URL (jogo.html aberto direto), volta para o menu
+	if(tempo_segundos == 0) {
+		window.location.href = 'index.html';
+		return;
 	}
 
 	//inserindo segundos no span
@@ -25,15 +32,16 @@ function iniciaJogo(){
 
 	// quantidade de balões
 	var qtde_baloes = 80;
-	
+
 	cria_baloes(qtde_baloes);
 
 	//imprimir qtde baloes inteiros
 	document.getElementById('baloes_inteiros').innerHTML = qtde_baloes;
 	document.getElementById('baloes_estourados').innerHTML = 0;
 
+	jogoAtivo = true;
 	contagem_tempo(tempo_segundos + 1)
-	
+
 }
 
 function contagem_tempo(segundos){
@@ -48,11 +56,12 @@ function contagem_tempo(segundos){
 
 	document.getElementById('cronometro').innerHTML = segundos;
 
-	timerId = setTimeout("contagem_tempo("+segundos+")", 1000);
+	timerId = setTimeout(function(){ contagem_tempo(segundos); }, 1000);
 }
 
 function game_over(){
-	alert('Fim de jogo, você não conseguiu estourar todos os balões a tempo');
+	parar_jogo();
+	mostrar_resultado('Fim de jogo', 'Você não conseguiu estourar todos os balões a tempo.');
 }
 
 function cria_baloes(qtde_baloes){
@@ -61,7 +70,10 @@ function cria_baloes(qtde_baloes){
 
 		var balao = document.createElement("img");
 		balao.src = 'imagens/balao_azul_pequeno.png';
-		balao.style.margin = '10px';
+		balao.alt = 'Balão';
+		balao.width = 36;
+		balao.height = 36;
+		balao.draggable = false;
 		balao.id = 'b'+i;
 		balao.onclick = function(){ estourar(this); };
 
@@ -71,9 +83,14 @@ function cria_baloes(qtde_baloes){
 
 function estourar(e){
 
-	var id_balao = e.id;
+	// balão já estourado ou jogo encerrado: o clique não conta
+	if(!jogoAtivo || e.classList.contains('estourado')){
+		return;
+	}
 
-	document.getElementById(id_balao).src = 'imagens/balao_azul_pequeno_estourado.png';
+	e.classList.add('estourado');
+	e.src = 'imagens/balao_azul_pequeno_estourado.png';
+	e.alt = 'Balão estourado';
 
 	pontuacao(-1);
 
@@ -100,11 +117,20 @@ function pontuacao(acao){
 
 function situacao_jogo(baloes_inteiros){
 	if(baloes_inteiros == 0){
-		alert('Parabéns, você conseguiu estourar todos os balões a tempo');
 		parar_jogo();
+		mostrar_resultado('Parabéns!', 'Você conseguiu estourar todos os balões a tempo.');
 	}
 }
 
 function parar_jogo(){
+	jogoAtivo = false;
 	clearTimeout(timerId);
+}
+
+// Mensagem de fim de jogo na própria página (antes era um alert)
+function mostrar_resultado(titulo, texto){
+	document.getElementById('resultado_titulo').innerHTML = titulo;
+	document.getElementById('resultado_texto').innerHTML = texto;
+	document.getElementById('jogar_de_novo').href = 'jogo.html' + window.location.search;
+	document.getElementById('resultado').classList.add('visivel');
 }
